@@ -303,6 +303,37 @@ icsInput.addEventListener("change", async (e) => {
   alert(`imported ${imported.length} event${imported.length === 1 ? "" : "s"} from your calendar.`);
 });
 
+/* ---------------- Date block + affirmation ---------------- */
+
+function renderDateBlock() {
+  const now = new Date();
+  const monthEl = document.getElementById("dateMonth");
+  const dayEl = document.getElementById("dateDay");
+  const weekdayEl = document.getElementById("dateWeekday");
+  if (!monthEl) return;
+  monthEl.textContent = String(now.getMonth() + 1).padStart(2, "0");
+  dayEl.textContent = String(now.getDate()).padStart(2, "0");
+  weekdayEl.textContent = now.toLocaleDateString(undefined, { weekday: "short" });
+}
+
+const AFFIRMATIONS = [
+  "small steps still count.",
+  "you don't have to do it all today.",
+  "one task at a time.",
+  "progress, not perfection.",
+  "you've got this handled.",
+  "cross one thing off, feel lighter.",
+];
+
+function renderAffirmation() {
+  const el = document.getElementById("affirmationText");
+  if (!el) return;
+  el.textContent = AFFIRMATIONS[Math.floor(Math.random() * AFFIRMATIONS.length)];
+}
+
 /* ---------------- Boot ---------------- */
 
 renderAll();
+
+renderDateBlock();
+renderAffirmation();
