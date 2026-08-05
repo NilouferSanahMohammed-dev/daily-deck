@@ -331,9 +331,37 @@ function renderAffirmation() {
   el.textContent = AFFIRMATIONS[Math.floor(Math.random() * AFFIRMATIONS.length)];
 }
 
+/* ---------------- Mascot peek, pops out as you scroll ---------------- */
+
+function setupMascotPeek() {
+  const inner = document.getElementById("mascotInner");
+  if (!inner) return;
+
+  const PEEK_OFFSET = 30; // px hidden below the clip window at rest
+  const SCROLL_RANGE = 140; // px of scrolling to fully reveal it
+
+  let ticking = false;
+  function updateMascot() {
+    const progress = Math.min(1, window.scrollY / SCROLL_RANGE);
+    inner.style.transform = `translateY(${PEEK_OFFSET * (1 - progress)}px)`;
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(updateMascot);
+      ticking = true;
+    }
+  });
+
+  updateMascot();
+}
+
 /* ---------------- Boot ---------------- */
 
 renderAll();
 
 renderDateBlock();
 renderAffirmation();
+
+setupMascotPeek();
