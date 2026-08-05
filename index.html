@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>daily deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <span class="brand">daily deck</span>
+    </div>
+
+    <nav class="list-nav" id="listNav"></nav>
+
+    <form class="new-list-form" id="newListForm">
+      <input type="text" id="newListInput" placeholder="+ new list" autocomplete="off" />
+    </form>
+
+    <div class="sidebar-bottom">
+      <label class="import-btn">
+        import calendar (.ics)
+        <input type="file" id="icsInput" accept=".ics" hidden />
+      </label>
+      <p class="sidebar-hint">jarvis reads from here, open it in the same browser and it'll know your day</p>
+    </div>
+  </aside>
+
+  <main class="board">
+    <header class="board-header">
+      <h1 id="boardTitle">today</h1>
+      <p class="board-sub" id="boardSub"></p>
+    </header>
+
+    <form class="add-task-form" id="addTaskForm">
+      <input type="text" id="taskTitleInput" placeholder="add a task and hit enter&hellip;" autocomplete="off" />
+      <input type="date" id="taskDateInput" />
+      <select id="taskPriorityInput">
+        <option value="low">low</option>
+        <option value="medium" selected>medium</option>
+        <option value="high">high</option>
+      </select>
+      <button type="submit">add</button>
+    </form>
+
+    <div class="task-list" id="taskList"></div>
+  </main>
+
+</div>
+
+<div class="overlay" id="notesOverlay">
+  <div class="notes-card">
+    <div class="notes-header">
+      <h2 id="notesTaskTitle"></h2>
+      <button class="close-btn" id="closeNotesBtn" aria-label="Close">&times;</button>
+    </div>
+    <textarea id="notesTextarea" placeholder="notes for this task&hellip;"></textarea>
+    <div class="notes-actions">
+      <button class="danger-link" id="deleteTaskBtn">delete task</button>
+      <button class="save-btn" id="saveNotesBtn">save</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
