@@ -87,7 +87,7 @@ function renderSidebar() {
   const todayItem = document.createElement("div");
   todayItem.className = `list-item${currentView === "today" ? " active" : ""}`;
   const todayCount = tasksForView("today").filter((t) => !t.done).length;
-  todayItem.innerHTML = `<span>today</span><span class="list-item-count">${todayCount}</span>`;
+  todayItem.innerHTML = `<span>☀️ today</span><span class="list-item-count">${todayCount}</span>`;
   todayItem.addEventListener("click", () => setView("today"));
   listNav.appendChild(todayItem);
 
@@ -96,7 +96,7 @@ function renderSidebar() {
     const item = document.createElement("div");
     item.className = `list-item${currentView === list.id ? " active" : ""}`;
     item.innerHTML = `
-      <span>${list.name}</span>
+      <span>${list.id === "inbox" ? "🧺" : "📝"} ${list.name}</span>
       <span style="display:flex; align-items:center; gap:6px;">
         <span class="list-item-count">${count}</span>
         ${list.id !== "inbox" ? `<button class="list-remove" data-id="${list.id}">&times;</button>` : ""}
